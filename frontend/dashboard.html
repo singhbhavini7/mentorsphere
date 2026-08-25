@@ -1,0 +1,293 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | MentorSphere</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="dashboard">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header" style="display: flex; align-items: center; justify-content: space-between;">
+                <h2><span>Mentor</span>Sphere</h2>
+                <!-- Inside Sidebar Toggle Button -->
+                <button id="toggleSidebarBtn" class="toggle-btn" style="background: none; border: none; font-size: 20px; cursor: pointer;">☰</button>
+            </div>
+
+            <nav>
+                <a href="/frontend/dashboard.html" class="active">
+                    🏠 <span>Dashboard</span>
+                </a>
+                <a href="/frontend/mentor.html">
+                    👨‍🏫 <span>Find Mentors</span>
+                </a>
+                <a href="/frontend/discussion.html">
+                    💬 <span>Discussions</span>
+                </a>
+                <a href="/frontend/resource.html">
+                    📚 <span>Resources</span>
+                </a>
+                <a href="/frontend/placement.html">
+                    🎯 <span>Placements</span>
+                </a>
+                <a href="/frontend/profile.html">
+                    👤 <span>Profile</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-bottom">
+                <a href="#">
+                    🔔 <span>Notifications</span>
+                </a>
+                <a href="#" id="logoutBtn">
+                    🚪 <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <!-- TOP HEADER -->
+            <div class="dashboard-header">
+                <div style="display: flex; align-items: center; gap: 12px;">
+                    <!-- Outer Sidebar Toggle Button (Visible when collapsed) -->
+                    <button id="openSidebarBtn" class="toggle-btn-outer" style="background: none; border: none; font-size: 22px; cursor: pointer;">☰</button>
+                    <div>
+                        <!-- Dynamic Greeting Paragraph -->
+                        <p class="greeting" id="dynamicGreeting">Good morning 👋</p>
+                        <h1 id="welcome-heading">Welcome!</h1>
+                    </div>
+                </div>
+
+                <!-- CLICKABLE PROFILE -->
+                <a href="/frontend/profile.html" class="dashboard-profile">
+                    <div class="dashboard-avatar" id="headerAvatar">U</div>
+                    <div>
+                        <strong id="headerUserName">Loading...</strong>
+                        <span id="headerUserRole">Student</span>
+                    </div>
+                </a>
+            </div>
+
+
+            <!-- HERO SECTION -->
+            <section class="dashboard-hero">
+                <div class="hero-content">
+                    <div class="hero-badge">✨ Keep learning, keep growing</div>
+                    <h2>Learn faster with the right <span>mentor.</span></h2>
+                    <p>Connect with seniors and alumni, join communities, ask doubts and grow your skills.</p>
+
+                    <div class="hero-buttons">
+                        <a href="/frontend/mentor.html" class="primary-hero-btn">Find Your Mentor →</a>
+                        <a href="/frontend/discussion.html" class="secondary-hero-btn">Join Discussions</a>
+                    </div>
+                </div>
+
+                <div class="hero-visual">
+                    <div class="floating-card card-one">💡 <span>Ask doubts</span></div>
+                    <div class="hero-icon">🎓</div>
+                    <div class="floating-card card-two">🎯 <span>Find guidance</span></div>
+                </div>
+            </section>
+
+
+            <!-- STATS -->
+            <section class="dashboard-stats">
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon">💬</div>
+                    <div>
+                        <h3>12</h3>
+                        <p>Channels Joined</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon">👨‍🏫</div>
+                    <div>
+                        <h3>5</h3>
+                        <p>Mentors Connected</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon">📚</div>
+                    <div>
+                        <h3>18</h3>
+                        <p>Resources Saved</p>
+                    </div>
+                </div>
+
+                <div class="dashboard-stat-card">
+                    <div class="dashboard-stat-icon">❓</div>
+                    <div>
+                        <h3>7</h3>
+                        <p>Doubts Asked</p>
+                    </div>
+                </div>
+            </section>
+
+
+            <!-- YOUR CHANNELS -->
+            <section class="your-channels-section">
+                <div class="section-header">
+                    <div>
+                        <h2>Your Channels</h2>
+                        <p>Communities matching your interests</p>
+                    </div>
+                    <a href="/frontend/discussion.html">View All →</a>
+                </div>
+
+                <div class="channels-grid">
+                    <div class="channel-card">
+                        <div class="channel-icon">💻</div>
+                        <h3>Development</h3>
+                        <p>Discuss web development, backend, projects and technologies.</p>
+                        <button>Explore →</button>
+                    </div>
+
+                    <div class="channel-card">
+                        <div class="channel-icon">🤖</div>
+                        <h3>AI / ML</h3>
+                        <p>Learn machine learning, AI concepts and build interesting projects.</p>
+                        <button>Explore →</button>
+                    </div>
+
+                    <div class="channel-card">
+                        <div class="channel-icon">🧠</div>
+                        <h3>DSA</h3>
+                        <p>Practice problem solving, algorithms and data structures together.</p>
+                        <button>Explore →</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- JAVASCRIPT INTEGRATION -->
+    <script>
+        // 1. Time Ke Hisaab Se Dynamic Greeting Function
+        function setDynamicGreeting() {
+            const hours = new Date().getHours();
+            let greetingText = "Good morning 👋";
+
+            if (hours >= 12 && hours < 17) {
+                greetingText = "Good afternoon ☀️";
+            } else if (hours >= 17 && hours < 22) {
+                greetingText = "Good evening 🌙";
+            } else if (hours >= 22 || hours < 5) {
+                greetingText = "Good night 🌌";
+            }
+
+            const greetingElement = document.getElementById("dynamicGreeting");
+            if (greetingElement) {
+                greetingElement.textContent = greetingText;
+            }
+        }
+
+        // 2. UI Update Helper Function
+        function updateUIWithUserData(userName, userRole) {
+            if (!userName) return;
+            document.getElementById('welcome-heading').textContent = `Welcome, ${userName}! 👋`;
+            document.getElementById('headerUserName').textContent = userName;
+            document.getElementById('headerAvatar').textContent = userName.charAt(0).toUpperCase();
+            if (userRole) {
+                document.getElementById('headerUserRole').textContent = userRole;
+            }
+        }
+
+        // 3. Instant Local Storage Fallback
+        function loadSavedLocalUser() {
+            const savedName = localStorage.getItem('userName');
+            const savedRole = localStorage.getItem('userRole');
+            if (savedName) {
+                updateUIWithUserData(savedName, savedRole);
+            }
+        }
+
+        // 4. Fetch User Info & Channels from Backend
+        async function loadDashboardData() {
+            const token = localStorage.getItem('token');
+            if (!token) return;
+
+            // Fetch User Info
+            try {
+                const userRes = await fetch('http://localhost:5000/api/auth/me', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (userRes.ok) {
+                    const user = await userRes.json();
+                    const fullName = user.name || user.username || localStorage.getItem('userName');
+                    const role = user.role || 'Student';
+
+                    if (fullName) {
+                        updateUIWithUserData(fullName, role);
+                        localStorage.setItem('userName', fullName);
+                        localStorage.setItem('userRole', role);
+                    }
+                }
+            } catch (err) {
+                console.error('Error fetching user info:', err);
+            }
+
+            // Fetch Channels Info
+            try {
+                const channelRes = await fetch('http://localhost:5000/api/channels', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (channelRes.ok) {
+                    const channels = await channelRes.json();
+                    console.log('User Channels:', channels);
+                }
+            } catch (error) {
+                console.error('Error loading channels:', error);
+            }
+        }
+
+        // 5. Sidebar Toggle Functionality with Fluid Transition Trigger
+        function initSidebarToggle() {
+    const sidebar = document.getElementById('sidebar');
+    const toggleBtn = document.getElementById('toggleSidebarBtn');
+    const openBtn = document.getElementById('openSidebarBtn');
+
+    function toggleMenu() {
+        sidebar.classList.toggle('collapsed');
+    }
+
+    if (toggleBtn) toggleBtn.addEventListener('click', toggleMenu);
+    if (openBtn) openBtn.addEventListener('click', toggleMenu);
+}
+
+        // Page load hone par saare functions execute honge
+        window.addEventListener('DOMContentLoaded', () => {
+            setDynamicGreeting();
+            loadSavedLocalUser();
+            loadDashboardData();
+            initSidebarToggle();
+        });
+    </script>
+
+</body>
+
+</html>

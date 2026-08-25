@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Join MentorSphere</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<script>
+  // Form element ko select kar rahe hain
+  const signupForm = document.querySelector('form');
+
+  if (signupForm) {
+    signupForm.addEventListener('submit', async (e) => {
+      e.preventDefault(); // Page reload hone se rokega
+
+      // Input fields se values nikal rahe hain
+      // (Check kar lena ki aapke HTML inputs ki ID 'name', 'email', 'password', 'role' hi ho)
+      const name = document.querySelector('#name')?.value;
+      const email = document.querySelector('#email')?.value;
+      const password = document.querySelector('#password')?.value;
+      const role = document.querySelector('#role')?.value || 'student';
+
+      try {
+        // Backend API ko POST request bhej rahe hain
+        const response = await fetch('http://localhost:5000/api/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ name, email, password, role }),
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+          alert('✅ Registration Successful! Ab Login kar sakte hain.');
+          window.location.href = 'login.html'; // Direct login page par bhej dega
+        } else {
+          alert('❌ ' + (data.message || 'Registration Failed!'));
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('❌ Backend Server Running Nahi Hai!');
+      }
+    });
+  }
+</script>
+<body>
+
+<div class="auth-page">
+
+    <!-- LEFT SIDE -->
+    <div class="auth-left">
+
+        <a href="index.html" class="auth-logo">
+            <div class="auth-logo-icon">M</div>
+            <span>MentorSphere</span>
+        </a>
+
+        <div class="auth-content">
+
+            <div class="auth-badge">
+                ✦ AI-Powered Academic Mentorship
+            </div>
+
+            <h1>
+                Find your people.<br>
+                <span>Grow together.</span>
+            </h1>
+
+            <p>
+                Join a community where juniors, seniors and alumni
+                connect, learn and help each other grow.
+            </p>
+
+            <div class="auth-benefits">
+
+                <div class="benefit">
+                    <div class="benefit-icon">✦</div>
+                    <div>
+                        <strong>Find the right mentor</strong>
+                        <span>Connect based on skills and interests</span>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">💬</div>
+                    <div>
+                        <strong>Ask and learn together</strong>
+                        <span>Join topic-based communities</span>
+                    </div>
+                </div>
+
+                <div class="benefit">
+                    <div class="benefit-icon">🛡</div>
+                    <div>
+                        <strong>A safer community</strong>
+                        <span>AI-supported toxicity detection</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <p class="auth-footer-text">
+            © 2026 MentorSphere
+        </p>
+
+    </div>
+
+
+    <!-- RIGHT SIDE -->
+    <div class="auth-right">
+
+        <div class="signup-form-container">
+
+            <div class="form-header">
+
+                <h2>Create your account</h2>
+
+                <p>
+                    Start your mentorship journey today.
+                </p>
+
+            </div>
+
+
+            <form id="signupForm">
+
+                <div class="input-group">
+
+                    <label>Full Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your full name"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Email</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>Password</label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a password"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="input-group">
+
+                    <label>I am joining as</label>
+
+                    <select id="role" required>
+
+                        <option value="" disabled selected>
+                            Select your role
+                        </option>
+
+                        <option value="Junior">
+                            Junior Student
+                        </option>
+
+                        <option value="Senior">
+                            Senior Student
+                        </option>
+
+                        <option value="Alumni">
+                            Alumni
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <button type="submit" class="auth-submit-btn">
+                    Create Account →
+                </button>
+
+            </form>
+
+
+            <p class="auth-switch">
+
+                Already have an account?
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+document.getElementById("signupForm").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const name = document.getElementById("name").value;
+    const role = document.getElementById("role").value;
+
+    localStorage.setItem("userName", name);
+    localStorage.setItem("userRole", role);
+
+    window.location.href = "dashboard.html";
+
+});
+
+</script>
+
+</body>
+</html>
